@@ -9,22 +9,11 @@
 * Best enjoyed using [Nord](https://www.nordtheme.com/) colors!
 
 # Installation
-## Prerequisites
-Install [OhMyZSH](https://github.com/ohmyzsh/ohmyzsh).
-
-## Oneliner
-### curl
-`sh -c "$(curl -fsSL https://raw.githubusercontent.com/BuddhaDom/zsh-buddha/master/deploy.zsh)"`
-### wget
-`sh -c "$(wget -O- https://raw.githubusercontent.com/BuddhaDom/zsh-buddha/master/deploy.zsh)"`
-### fetch
-`sh -c "$(fetch -o - https://raw.githubusercontent.com/BuddhaDom/zsh-buddha/master/deploy.zsh)"`
-
-## Manual
-1. Download the theme. \
+1. Install [OhMyZSH](https://github.com/ohmyzsh/ohmyzsh).
+2. Download the theme. \
 `git clone --quiet https://github.com/BuddhaDom/zsh-buddha ~/.oh-my-zsh/custom/themes/buddha`
-2. Select this theme. \
+3. Select this theme. \
 `omz theme set buddha/buddha`
-3. Done! Reload your shell.\
+4. Done! Reload your shell.\
 `omz reload`
-4. 🐺
+5. 🐺
