@@ -1,0 +1,1 @@
+cp ./buddha.zsh-theme ~/.oh-my-zsh/themes
