@@ -1,14 +1,35 @@
 function theme_precmd {
     # Pretty up the current directory
     dirs -c ;
-    local FULL=$(dirs) ;
+    local FULL=$(dirs | awk -F '/' '
+    {
+        if($1 == "")
+        {
+            if (NF > 5) {
+                print "/"$2"/.../"$(NF-2)"/"$(NF-1)"/"$NF
+            } 
+            else { 
+                print $(dirs) 
+            }
+        }
+        else
+        {
+            if (NF > 3) 
+            {
+                print $1"/.../"$(NF-2)"/"$(NF-1)"/"$NF
+            } 
+            else { 
+                print $(dirs) 
+            }
+        }
+    }') ;
     DIR_END=$(basename $(dirs)) ;
     DIR_PRE=${FULL%${DIR_END}} ;
     if [[ $DIR_END = "" ]] ; then
         DIR_END=$DIR_PRE ;
         DIR_PRE='' ;
     fi ;
-    STATUS="$CYAN ⠒⠒⠒[%(?.$GREEN✓.$RED✗)$CYAN]⠒⠒⠒
+    STATUS="$BLUE⠒%(?.$GREEN✓.$RED✗)$BLUE⠒
 
 " ;
     
@@ -31,16 +52,16 @@ done
 autoload -U add-zsh-hook
 add-zsh-hook precmd theme_precmd
 
-ZSH_THEME_GIT_PROMPT_PREFIX="$CYAN""⠒[""$GREEN"
-ZSH_THEME_GIT_PROMPT_SUFFIX="$CYAN""]⠒%f"
+ZSH_THEME_GIT_PROMPT_PREFIX="$BLUE""⠒[""$MAGENTA"
+ZSH_THEME_GIT_PROMPT_SUFFIX="$BLUE""]⠒%f"
 ZSH_THEME_GIT_PROMPT_DIRTY="$YELLOW""·"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 
 PROMPT='$STATUS\
-🐺${CYAN} ⠒\
-${CYAN}[${YELLOW}%(!.%SROOT%s.%n)${GREEN}@%m${CYAN}]⠒\
-${CYAN}[${GREEN}${DIR_PRE}${YELLOW}${DIR_END}${CYAN}]⠒\
+🐺${BLUE} ⠒\
+${BLUE}[${YELLOW}%(!.%SROOT%s.%n)${CYAN}@%m${BLUE}]⠒\
+${BLUE}[${CYAN}${DIR_PRE}${YELLOW}${DIR_END}${BLUE}]⠒\
 
  ${YELLOW}%B↳%b%f '
 
